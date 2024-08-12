@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+        .typing {
+    width: 550px;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 1.5s steps(12, end), cursor .2s steps(12, end) infinite;
+    color: #ffffff;
+}
+@keyframes typing {
+    from { width: 0 }
+}
+@keyframes cursor {
+    50% { border-color: transparent }
+}
+.text-xxl {
+  font-size: 13px; /* Adjust the font size as needed */
+}
+
+.btn {
+  width: 170px;
+  height: 50px;
+  background: linear-gradient(to top, #000000, #000000, #000000);
+  color: #ffffff;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.btn span {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: top 0.5s;
+}
+
+.btn-text-one {
+  color: #ffffff;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.btn-text-two {
+  color: #ffffff;
+  position: absolute;
+  width: 100%;
+  top: 150%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.btn:hover .btn-text-one {
+  top: -100%;
+}
+
+.btn:hover .btn-text-two {
+  top: 50%;
+}
+
+  </style>
+  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="main-template/img/icon.png"  rel="icon">
+  <link href="main-template/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <title>The Hive Hub</title>
+  <!-- Fonts and icons -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+
+</head>
+
+<body class="">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent mt-4">
+    <div class="container">
+      <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 text-white" href="/">
+        The Hive Hub
+      </a>
+      <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon mt-2">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </span>
+      </button>
+      <div class="collapse navbar-collapse" id="navigation">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="/freelancer-home">
+              <i class="fa fa-chart-pie opacity-6  me-1"></i>
+              Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link me-2" href="/freelancer-profile">
+              <i class="fa fa-user opacity-6  me-1"></i>
+              Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link me-2" href="/register">
+              <i class="fas fa-user-circle opacity-6  me-1"></i>
+              Sign Up
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link me-2" href="/login">
+              <i class="fas fa-key opacity-6  me-1"></i>
+              Sign In
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End Navbar -->
+  <main class="main-content mt-0">
+    <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signup-cover.jpg'); background-position: top;">
+      <span class="mask bg-gradient-dark opacity-6"></span>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 text-center mx-auto"><br><br><br>
+            <h2 class="cssanimation typing"> list of projects</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row mt-lg-n10 mt-md-n11 mt-n10 justify-content-center">
+        <div class="card mb-4">
+          <!-- Add the filter dropdown -->
+          <div class="card-body px-3 pt-3 pb-2">
+            <div class="table-responsive p-0">
+              <% if (projects.length > 0) { %>
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="font-weight-bold">Project Name</th>
+                      <th class="font-weight-bold">Backend</th>
+                      <th class="font-weight-bold">Frontend</th>
+                      <th class="font-weight-bold">Database</th>
+                      <th class="font-weight-bold">Category</th>
+                      <th class="font-weight-bold">Project Type</th>
+                      <th class="font-weight-bold">Status</th>
+                      <th class="font-weight-bold">Start Date</th>
+                      <th class="font-weight-bold">End Date</th>
+                      <th class="font-weight-bold">Estimated Price</th>
+                      <th class="font-weight-bold">Max Budget</th>
+                      <th class="font-weight-bold">Pack</th>
+                      <th class="font-weight-bold">Created By</th>
+                      <th class="font-weight-bold">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="project-table-body">
+                    <% projects.forEach(project => { %>
+                      <tr class="project">
+                        <td class="text-uppercase text-secondary text-xxl font-weight-bolder opacity-15"><%= project.projectName %></td>
+                        <td class="text-uppercase text-secondary text-xxl font-weight-bolder opacity-15"><%= project.backend %></td>
+                        <td class="text-uppercase text-secondary text-xxl font-weight-bolder opacity-15"><%= project.frontend %></td>
+                        <td class="text-uppercase text-secondary text-xxl font-weight-bolder opacity-15"><%= project.database %></td>
+                        <td class="text-uppercase text-secondary text-xxl font-weight-bolder opacity-15"><%= project.category %></td>
+                        <td class="text-uppercase text-secondary text-xxl font-weight-bolder opacity-15"><%= project.projectType %></td>
+                        <td class="text-uppercase text-secondary text-xxl font-weight-bolder opacity-15"><%= project.status %></td>
+                        <td class="text-uppercase text-secondary text-xxl font-weight-bolder opacity-15">
+                          <%= project.startDate.toLocaleDateString(undefined, {
+                            weekday: 'short',
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric'
+                          }) %>
+                        </td>
+                        <td class="text-uppercase text-secondary text-xxl font-weight-bolder opacity-15">
+                          <%= project.endDate.toLocaleDateString(undefined, {
+                            weekday: 'short',
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric'
+                          }) %>
+                        </td>
+                        <td class="text-uppercase text-secondary text-xxl font-weight-bolder opacity-15"><%= project.Estimated_price %></td>
+                        <td class="text-uppercase text-secondary text-xxl font-weight-bolder opacity-15"><%= project.maxBudget %></td>
+                        <td class="text-uppercase text-secondary text-xxl font-weight-bolder opacity-15"><%= project.pack.join(', ') %></td>
+                        <td class="text-uppercase text-secondary text-xxl font-weight-bolder opacity-15"><%= project.createdBy %></td>
+                        <td>
+                       
+
+
+                          <button data-project="<%= project.projectName %>" data-username="<%= username %>" class="btn">
+                            <span class="btn-text-one">submit proposition</span>
+                            <span class="btn-text-two">press to submit</span>
+                        </button>
+                          
+                        </td>
+                        
+                      </tr>
+                    <% }); %>
+                  </tbody>
+                </table>
+              <% } else { %>
+                <p>No projects found.</p>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+  var viewProjectButtons = document.querySelectorAll('.btn');
+
+  viewProjectButtons.forEach(function(button) {
+    button.addEventListener('click',async function() {
+      var projectName = this.getAttribute('data-project');
+      var username = this.getAttribute('data-username');
+      var price = parseInt(prompt('Enter the price for your proposition:'));
+
+      // Check if the price is a valid number
+      if (isNaN(price)) {
+        await Swal.fire({
+            icon: 'error',
+            title: 'Invalid Price',
+            text: 'Please enter a valid number for the price.',
+          });
+      }
+
+      // Send AJAX request to save the proposition
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/save-proposition');
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onload =async function() {
+        if (xhr.status === 200) {
+          await Swal.fire({
+              icon: 'success',
+              title: 'Proposition Saved!',
+              text: 'Your proposition has been saved successfully!',
+            });        } else {
+              await Swal.fire({
+              icon: 'error',
+              title: 'Failed to Save Proposition',
+              text: 'There was an error while saving your proposition. Please try again later.',
+            });        }
+      };
+      xhr.send(JSON.stringify({ projectName, username, price }));
+    });
+  });
+});
+
+  </script>
+  
+</body>
+</html>
